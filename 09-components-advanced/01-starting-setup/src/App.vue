@@ -2,10 +2,9 @@
 	<div>
 		<the-header></the-header>
 		<badge-list></badge-list>
-		<user-info>
-			:full-name="activeUser.name"
+		<user-info :full-name="activeUser.name"
 			:info-text="activeUser.description"
-			:role="activeUser.role"
+			:role="activeUser.role">
 		</user-info>
 	</div>
 </template>
@@ -20,7 +19,7 @@ export default {
 				role: 'admin',
 			},
 		};
-	},
+	}
 };
 </script>
 
