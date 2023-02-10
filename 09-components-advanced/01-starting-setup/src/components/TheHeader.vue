@@ -4,7 +4,7 @@
   </header>
 </template>
 
-<style>
+<style scoped>
 header {
   width: 100%;
   height: 5rem;
@@ -17,11 +17,5 @@ header {
 header h1 {
   color: white;
   margin: 0;
-}
-
-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }
 </style>
