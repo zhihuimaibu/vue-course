@@ -1,11 +1,12 @@
 <template>
-  <form>
+  <form @submit.prevent="saveData">
     <div class="form-control">
       <label for="user-name">Your Name</label>
       <input
         id="user-name"
         name="user-name"
         type="text"
+        v-model.trim="userName"
       />
     </div>
     <div class="form-control">
@@ -14,6 +15,8 @@
         id="age"
         name="age"
         type="number"
+        v-model="age"
+        ref="userAge"
       />
     </div>
     <div class="form-control">
@@ -21,6 +24,7 @@
       <select
         id="referrer"
         name="referrer"
+        v-model="referrer"
       >
         <option value="google">Google</option>
         <option value="wom">Word of mouth</option>
@@ -34,6 +38,8 @@
           id="interest-news"
           name="interest"
           type="checkbox"
+          v-model="checkbox"
+          value="interest-news"
         />
         <label for="interest-news">News</label>
       </div>
@@ -42,6 +48,8 @@
           id="interest-tutorials"
           name="interest"
           type="checkbox"
+          v-model="checkbox"
+          value="interest-tutorials"
         />
         <label for="interest-tutorials">Tutorials</label>
       </div>
@@ -50,6 +58,8 @@
           id="interest-nothing"
           name="interest"
           type="checkbox"
+          v-model="checkbox"
+          value="interest-nothing"
         />
         <label for="interest-nothing">Nothing</label>
       </div>
@@ -61,6 +71,8 @@
           id="how-video"
           name="how"
           type="radio"
+          v-model="radio"
+          value="video"
         />
         <label for="how-video">Video Courses</label>
       </div>
@@ -69,6 +81,8 @@
           id="how-blogs"
           name="how"
           type="radio"
+          v-model="radio"
+          value="blogs"
         />
         <label for="how-blogs">Blogs</label>
       </div>
@@ -77,15 +91,68 @@
           id="how-other"
           name="how"
           type="radio"
+          v-model="radio"
+          value="other"
         />
         <label for="how-other">Other</label>
       </div>
+    </div>
+    <div>
+      <input
+        type="checkbox"
+        id="confirm-terms"
+        name="confirm-terms"
+        v-model="confirm"
+        value="confirm"
+      />
+      <label for="confirm-terms">Confirm</label>
+    </div>
+    <div class="fromControl">
+      <!-- :modelValue='rate' @update:modelValue='newValue => rate = newValue' -->
+      <rateing-control v-model="rate"></rateing-control>
     </div>
     <div>
       <button>Save Data</button>
     </div>
   </form>
 </template>
+
+<script>
+import RateingControl from './RateingControl.vue';
+
+export default {
+  components: { RateingControl },
+  data() {
+    return {
+      userName: '',
+      age: null,
+      referrer: 'wom',
+      checkbox: [],
+      radio: '',
+      confirm: '',
+      rate: null,
+    };
+  },
+  methods: {
+    saveData() {
+      console.log(this.userName);
+      console.log(this.age + 5);
+      console.log(this.$refs.userAge.value + 5);
+      console.log(31);
+      console.log(this.referrer);
+      console.log(this.checkbox);
+      console.log(this.radio);
+      console.log(this.confirm);
+      console.log(this.rate);
+      this.rate = null;
+      console.log(this.rate + '6666');
+    },
+    ageInput(e) {
+      console.log(e.target.value);
+    },
+  },
+};
+</script>
 
 <style scoped>
 *:focus {
