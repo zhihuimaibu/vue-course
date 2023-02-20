@@ -9,6 +9,7 @@
         :role="member.role"
       ></user-item>
     </ul>
+    <router-link :to="{name: 'teamMembers', params: { id: 't2' }}">Go to Team 2</router-link>
   </section>
 </template>
 
@@ -17,16 +18,50 @@ import UserItem from '../users/UserItem.vue';
 
 export default {
   components: {
-    UserItem
+    UserItem,
   },
+  inject: ['teams', 'users'],
+  props: ['id'],
   data() {
     return {
-      teamName: 'Test',
-      members: [
-        { id: 'u1', fullName: 'Max Schwarz', role: 'Engineer' },
-        { id: 'u2', fullName: 'Max Schwarz', role: 'Engineer' },
-      ],
+      teamName: '',
+      members: [],
     };
+  },
+  watch: {
+    $route(newValue) {
+      this.setMember(newValue.params.id);
+    },
+  },
+  methods: {
+    setMember(teamId) {
+      const team = this.teams.find((team) => team.id === teamId);
+      const members = [];
+      for (const mId of team.members) {
+        members.push(this.users.find((user) => user.id === mId));
+      }
+      this.teamName = team.name;
+      this.members = members;
+    },
+  },
+  created() {
+    this.setMember(this.id);
+  },
+
+  beforeRouteEnter(to, from, next) {
+    console.log('BeforeRouteEnter component guard');
+    console.log(to, from);
+    next();
+  },
+
+  beforeRouteUpdate(to, from, next) {
+    console.log('BeforeRouteUpdate component guard');
+    console.log(to, from);
+    next();
+  },
+
+  unmounted() {
+    console.log('unmounted');
   },
 };
 </script>
