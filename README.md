@@ -1,3 +1,5 @@
+>start分支是初始化文件，第十个项目开始有原始文件
+
 # Vue - The Complete Guide
 
 > [Vue 3 Udemy Course by Maximilian Schwarzmüller](https://www.udemy.com/course/vuejs-2-the-complete-guide/)
