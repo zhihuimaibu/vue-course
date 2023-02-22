@@ -21,7 +21,11 @@ export default {
   components: {
     ProductItem,
   },
-  inject: ['products'],
+  computed: {
+    products() {
+      return this.$store.getters['products/products'];
+    },
+  },
 };
 </script>
 
